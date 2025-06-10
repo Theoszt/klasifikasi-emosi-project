@@ -17,7 +17,7 @@ Aplikasi web ini memungkinkan pengguna mengunggah gambar wajah untuk mengklasifi
 | `Home.html`        | Halaman utama yang menjelaskan konsep klasifikasi ekspresi wajah, teknologi yang digunakan, serta aplikasinya. Didukung Tailwind CSS dan JavaScript. |
 | `klasifikasi.html` | Halaman upload gambar wajah, menampilkan preview gambar, info file, serta hasil klasifikasi emosi dengan confidence score. |
 | `Pelajari.html`    | Halaman edukasi yang menjelaskan tahapan klasifikasi: deteksi wajah, grayscale, augmentasi, normalisasi, DWT, dan klasifikasi SVM. |
-| `index.ipynb`      | Notebook pelatihan model klasifikasi. Memuat proses training, pembuatan label, PCA, dan pelatihan SVM menggunakan dataset ekspresi wajah. |
+| `Final_project.ipynb`      | Notebook pelatihan model klasifikasi. Memuat proses training, pembuatan label, PCA, dan pelatihan SVM menggunakan dataset ekspresi wajah. |
 | `Dataset dan Model`| Berisi dataset ekspresi wajah, file `pca_model.pkl`, `svm_model.pkl`, dan label yang digunakan pada backend untuk prediksi. |
 
 ## 🚀 Cara Menjalankan Aplikasi
@@ -61,7 +61,7 @@ Aplikasi web ini memungkinkan pengguna mengunggah gambar wajah untuk mengklasifi
 
 * Pastikan gambar yang diunggah mengandung wajah yang jelas untuk hasil prediksi yang akurat.
 * Model telah dilatih menggunakan dataset ekspresi wajah tertentu, sehingga akurasi dapat bervariasi tergantung pada kualitas gambar.
-* File `index.ipynb` hanya digunakan untuk pelatihan model, bukan bagian dari runtime aplikasi.
+* File `Final_project.ipynb` hanya digunakan untuk pelatihan model, bukan bagian dari runtime aplikasi.
 
 
 > 📂 *Proyek ini bertujuan untuk menggabungkan teknologi machine learning dan pemrosesan citra ke dalam aplikasi berbasis web yang interaktif dan edukatif.*
