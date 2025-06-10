@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajari Lebih Lanjut - Proses Klasifikasi Emosi Wajah</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#60a5fa'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #2B6CB0;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type="checkbox"]:checked {
+            background-color: #2B6CB0;
+        }
+        input[type="checkbox"]:checked::after {
+            content: "✓";
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-white bg-opacity-95 shadow-sm z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-['Pacifico'] text-primary">PCD</a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="{{ url_for('home') }}#Beranda" class="text-gray-800 hover:text-primary font-medium py-2 transition">Beranda</a>
+                <a href="{{ url_for('home') }}#Tentang" class="text-gray-800 hover:text-primary font-medium py-2 transition">Tentang</a>
+                <a href="{{ url_for('home') }}#cara-kerja" class="text-gray-800 hover:text-primary font-medium py-2 transition">Cara Kerja</a>
+                <a href="{{ url_for('home') }}#Penerapan" class="text-gray-800 hover:text-primary font-medium py-2 transition">Studi Kasus</a>
+            </div>
+            
+            <div class="md:hidden flex items-center">
+                <button id="menu-toggle" class="w-10 h-10 flex items-center justify-center text-gray-700">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="{{ url_for('home') }}#Beranda" class="text-gray-800 hover:text-primary font-medium py-2 transition">Beranda</a>
+                <a href="{{ url_for('home') }}#Tentang" class="text-gray-800 hover:text-primary font-medium py-2 transition">Tentang</a>
+                <a href="{{ url_for('home') }}#cara-kerja" class="text-gray-800 hover:text-primary font-medium py-2 transition">Cara Kerja</a>
+                <a href="{{ url_for('home') }}#Penerapan" class="text-gray-800 hover:text-primary font-medium py-2 transition">Studi Kasus</a>
+            </div>
+        </div>
+    </nav>
+    <section id="process" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Langkah-Langkah Proses Klasifikasi</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                    Proses klasifikasi emosi wajah melibatkan serangkaian tahapan pemrosesan gambar dan pembelajaran mesin untuk menghasilkan prediksi emosi yang akurat. Berikut adalah penjelasan setiap langkah:
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Step 1: Crop Image/Face Detection -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">1</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Deteksi dan Crop Wajah</h3>
+                    <p class="text-gray-700 text-justify">
+                        Sistem menggunakan algoritma seperti Haar Cascade atau MTCNN untuk mendeteksi wajah dalam gambar. Area wajah kemudian di-crop untuk menghilangkan latar belakang yang tidak relevan, memfokuskan analisis pada fitur wajah.
+                    </p>
+                </div>
+                
+                <!-- Step 2: Resize -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">2</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Resize Gambar</h3>
+                    <p class="text-gray-700 text-justify">
+                        Gambar wajah diubah ukurannya ke dimensi standar (misalnya, 48x48 atau 224x224 piksel) untuk memastikan konsistensi input. Ini penting agar model dapat memproses semua gambar dengan ukuran yang sama.
+                    </p>
+                </div>
+                
+                <!-- Step 3: Grayscale -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">3</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Konversi ke Grayscale</h3>
+                    <p class="text-gray-700 text-justify">
+                        Gambar berwarna diubah menjadi skala abu-abu (grayscale) untuk mengurangi kompleksitas data, memfokuskan pada fitur struktural wajah seperti bentuk mata, mulut, dan alis yang relevan untuk klasifikasi emosi.
+                    </p>
+                </div>
+                
+                <!-- Step 4: Augmentation -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">4</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Augmentasi Data</h3>
+                    <p class="text-gray-700 text-justify">
+                        Augmentasi data seperti rotasi, flipping, atau perubahan kecerahan diterapkan untuk meningkatkan variasi data pelatihan, membuat model lebih robust terhadap variasi kondisi pencahayaan dan sudut wajah.
+                    </p>
+                </div>
+                
+                <!-- Step 5: Normalization -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">5</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Normalisasi</h3>
+                    <p class="text-gray-700 text-justify">
+                        Nilai piksel gambar distandarisasi ke rentang tertentu (misalnya, [0,1] atau [-1,1]) untuk memastikan model tidak terpengaruh oleh perbedaan skala intensitas piksel, sehingga pembelajaran lebih efisien.
+                    </p>
+                </div>
+                
+                <!-- Step 6: DWT Feature Extraction -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">6</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Ekstraksi Fitur DWT</h3>
+                    <p class="text-gray-700 text-justify">
+                        Discrete Wavelet Transform (DWT) menguraikan gambar ke dalam subband frekuensi (LL, LH, HL, HH), menangkap detail tekstur wajah seperti garis ekspresi untuk representasi fitur yang kaya.
+                    </p>
+                </div>
+                
+                <!-- Step 7: SVR Classification -->
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-6">7</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Klasifikasi dengan SVR</h3>
+                    <p class="text-gray-700 text-justify">
+                        Support Vector Regression (SVR) mengklasifikasikan emosi berdasarkan fitur DWT, memetakan fitur wajah ke label emosi (misalnya, senang, sedih, marah) dengan tingkat keyakinan tertentu.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="py-20 bg-primary bg-opacity-10 relative">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Siap Mencoba Klasifikasi Emosi Wajah?</h2>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-8">
+                Gunakan teknologi kami untuk menganalisis emosi wajah dengan cepat dan akurat. Kembali ke halaman utama untuk memulai!
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="{{ url_for('klasifikasi_get') }}">
+                    <button class="bg-primary text-white px-8 py-4 text-lg font-medium !rounded-button hover:bg-blue-700 transition shadow-md whitespace-nowrap">
+                        Lakukan Klasifikasi Sekarang
+                    </button>
+                </a>
+                <a href="{{ url_for('home') }}">
+                    <button class="bg-white text-primary border border-primary px-8 py-4 text-lg font-medium !rounded-button hover:bg-gray-50 transition shadow-sm whitespace-nowrap">
+                        Kembali ke Beranda
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Tentang Kami</h3>
+                    <p class="text-gray-400 mb-6">
+                        Kami adalah kelompok mahasiswa Universitas Negeri Surabaya (UNESA) dari S1 Sains Data yang sedang mengerjakan proyek Pengolahan Citra Digital. Anggota kami terdiri dari Hannia Hary Putri (077), Bintang Prananda Putra (131), dan Theopan Gerard N (227). Proyek ini bertujuan mengembangkan solusi visual berbasis teknologi untuk mendukung pembelajaran dan inovasi di bidang citra digital.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="ri-facebook-fill ri-lg text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="ri-twitter-fill ri-lg text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="ri-instagram-fill ri-lg text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="ri-linkedin-fill ri-lg text-white"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Tautan Cepat</h3>
+                    <ul class="space-y-3">
+                        <li><a href="{{ url_for('home') }}#Beranda" class="text-gray-400 hover:text-white transition">Beranda</a></li>
+                        <li><a href="{{ url_for('home') }}#Tentang" class="text-gray-400 hover:text-white transition">Tentang Kami</a></li>
+                        <li><a href="{{ url_for('home') }}#cara-kerja" class="text-gray-400 hover:text-white transition">Cara Kerja</a></li>
+                        <li><a href="{{ url_for('home') }}#Penerapan" class="text-gray-400 hover:text-white transition">Studi Kasus</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Hubungi Kami</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+                                <i class="ri-map-pin-line text-primary"></i>
+                            </div>
+                            <span class="text-gray-400">Jl. Ketintang, Ketintang, Kecamatan Gayungan, Kota Surabaya, Jawa Timur 60231</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-phone-line text-primary"></i>
+                            </div>
+                            <span class="text-gray-400 columns-3xs">
+                                <div>+62 *****</div>
+                                <div>+62 *****</div>
+                                <div>+62 *****</div>
+                            </span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-mail-line text-primary"></i>
+                            </div>
+                            <span class="text-gray-400">percobaanaja@email.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Klasifikasi Emosi Wajah. Hak Cipta Dilindungi.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 text-sm hover:text-white transition">Syarat & Ketentuan</a>
+                        <a href="#" class="text-gray-500 text-sm hover:text-white transition">Kebijakan Privasi</a>
+                        <a href="#" class="text-gray-500 text-sm hover:text-white transition">Bantuan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script id="mobileMenuToggle">
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                
+                const icon = menuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('ri-close-line');
+                    icon.classList.add('ri-menu-line');
+                } else {
+                    icon.classList.remove('ri-menu-line');
+                    icon.classList.add('ri-close-line');
+                }
+            });
+        });
+    </script>
+    
+    <script id="smoothScroll">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            for (const link of links) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            const icon = document.querySelector('#menu-toggle i');
+                            icon.classList.remove('ri-close-line');
+                            icon.classList.add('ri-menu-line');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
