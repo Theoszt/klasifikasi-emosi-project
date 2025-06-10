@@ -26,7 +26,7 @@ Aplikasi web ini memungkinkan pengguna mengunggah gambar wajah untuk mengklasifi
    Pastikan Python 3 dan pip telah terinstal. Kemudian install dependencies:
    ```bash
    pip install -r requirements.txt
-````
+   ````
 
 2. **Jalankan Server Flask**
    Jalankan file `app.py` untuk memulai server lokal:
