@@ -1,8 +1,4 @@
-Berikut adalah `README.md` yang disusun berdasarkan informasi yang telah Anda berikan:
 
----
-
-````markdown
 # Proyek Klasifikasi Ekspresi Wajah
 
 ## 📌 Deskripsi Proyek
@@ -67,8 +63,6 @@ Aplikasi web ini memungkinkan pengguna mengunggah gambar wajah untuk mengklasifi
 * Model telah dilatih menggunakan dataset ekspresi wajah tertentu, sehingga akurasi dapat bervariasi tergantung pada kualitas gambar.
 * File `index.ipynb` hanya digunakan untuk pelatihan model, bukan bagian dari runtime aplikasi.
 
----
 
 > 📂 *Proyek ini bertujuan untuk menggabungkan teknologi machine learning dan pemrosesan citra ke dalam aplikasi berbasis web yang interaktif dan edukatif.*
 
-```
