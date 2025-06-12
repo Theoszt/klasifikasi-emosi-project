@@ -21,4 +21,4 @@ ENV PORT=8000
 EXPOSE ${PORT}
 
 # Jalankan aplikasi Flask dengan python
-CMD ["python", "app.py"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]
