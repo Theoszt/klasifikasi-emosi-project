@@ -5,3 +5,4 @@ opencv-contrib-python==4.11.0.86
 scikit-learn==1.6.1
 PyWavelets==1.8.0
 Werkzeug==3.0.4 
+pillow==10.1.0
