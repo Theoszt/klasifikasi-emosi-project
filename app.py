@@ -10,11 +10,12 @@ import os
 from sklearn.svm import SVC
 app = Flask(__name__)
 
-# Load model dan encoder (pastikan path benar)
-pca = joblib.load(r'C:\project_smt 4\PCD\face emotion\pca_model.pkl')
-label_encoder = joblib.load(r'C:\project_smt 4\PCD\face emotion\label_encoder.pkl')
-svm_model = joblib.load(r'C:\project_smt 4\PCD\face emotion\svm_model.pkl')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
+pca = joblib.load(os.path.join(BASE_DIR, 'pca_model.pkl'))
+label_encoder = joblib.load(os.path.join(BASE_DIR, 'label_encoder.pkl'))
+svm_model = joblib.load(os.path.join(BASE_DIR, 'svm_model.pkl'))
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 def extract_dwt_features(img_gray):
