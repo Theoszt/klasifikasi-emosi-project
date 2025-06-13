@@ -73,7 +73,4 @@ Aplikasi juga tersedia secara online melalui Railway:
 * Model telah dilatih menggunakan dataset ekspresi wajah tertentu, sehingga akurasi dapat bervariasi tergantung pada kualitas gambar.
 * File `Final_project.ipynb` hanya digunakan untuk pelatihan model, bukan bagian dari runtime aplikasi.
 
-> 📂 *Proyek ini bertujuan untuk menggabungkan teknologi machine learning dan pemrosesan citra ke dalam aplikasi berbasis web yang interaktif dan edukatif.*
-
----
 
