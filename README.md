@@ -1,32 +1,36 @@
+---
 
 # Proyek Klasifikasi Ekspresi Wajah
 
 ## 📌 Deskripsi Proyek
+
 Aplikasi web ini memungkinkan pengguna mengunggah gambar wajah untuk mengklasifikasikan ekspresi emosi secara otomatis. Sistem memanfaatkan model machine learning yang telah dilatih sebelumnya dan teknik pemrosesan citra seperti deteksi wajah dan ekstraksi fitur sebelum melakukan klasifikasi.
 
 ## 👥 Anggota Kelompok
-- Hannia Hary Putri (077)  
-- Bintang Prananda Putra (131)  
-- Theopan Gerard N (227)  
+
+* Hannia Hary Putri (077)
+* Bintang Prananda Putra (131)
+* Theopan Gerard N (227)
 
 ## 📁 Struktur File
 
-| File               | Deskripsi                                                                                          |
-|--------------------|----------------------------------------------------------------------------------------------------|
-| `app.py`           | Backend utama dengan Flask. Memuat model terlatih (PCA, SVM, encoder label), menangani upload gambar, mendeteksi wajah dengan OpenCV, mengekstrak fitur (DWT), dan mengembalikan hasil klasifikasi. |
-| `Home.html`        | Halaman utama yang menjelaskan konsep klasifikasi ekspresi wajah, teknologi yang digunakan, serta aplikasinya. Didukung Tailwind CSS dan JavaScript. |
-| `klasifikasi.html` | Halaman upload gambar wajah, menampilkan preview gambar, info file, serta hasil klasifikasi emosi dengan confidence score. |
-| `Pelajari.html`    | Halaman edukasi yang menjelaskan tahapan klasifikasi: deteksi wajah, grayscale, augmentasi, normalisasi, DWT, dan klasifikasi SVM. |
-| `Final_project.ipynb`      | Notebook pelatihan model klasifikasi. Memuat proses training, pembuatan label, PCA, dan pelatihan SVM menggunakan dataset ekspresi wajah. |
-| `Dataset dan Model`| Berisi dataset ekspresi wajah, file `pca_model.pkl`, `svm_model.pkl`, dan label yang digunakan pada backend untuk prediksi. |
+| File                  | Deskripsi                                                                                                                                                                                           |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `app.py`              | Backend utama dengan Flask. Memuat model terlatih (PCA, SVM, encoder label), menangani upload gambar, mendeteksi wajah dengan OpenCV, mengekstrak fitur (DWT), dan mengembalikan hasil klasifikasi. |
+| `Home.html`           | Halaman utama yang menjelaskan konsep klasifikasi ekspresi wajah, teknologi yang digunakan, serta aplikasinya. Didukung Tailwind CSS dan JavaScript.                                                |
+| `klasifikasi.html`    | Halaman upload gambar wajah, menampilkan preview gambar, info file, serta hasil klasifikasi emosi dengan confidence score.                                                                          |
+| `Pelajari.html`       | Halaman edukasi yang menjelaskan tahapan klasifikasi: deteksi wajah, grayscale, augmentasi, normalisasi, DWT, dan klasifikasi SVM.                                                                  |
+| `Final_project.ipynb` | Notebook pelatihan model klasifikasi. Memuat proses training, pembuatan label, PCA, dan pelatihan SVM menggunakan dataset ekspresi wajah.                                                           |
+| `Dataset dan Model`   | Berisi dataset ekspresi wajah, file `pca_model.pkl`, `svm_model.pkl`, dan label yang digunakan pada backend untuk prediksi.                                                                         |
 
-## 🚀 Cara Menjalankan Aplikasi
+## 🚀 Cara Menjalankan Aplikasi Secara Lokal
 
 1. **Instalasi Dependencies**
    Pastikan Python 3 dan pip telah terinstal. Kemudian install dependencies:
+
    ```bash
    pip install -r requirements.txt
-   ````
+   ```
 
 2. **Jalankan Server Flask**
    Jalankan file `app.py` untuk memulai server lokal:
@@ -41,6 +45,12 @@ Aplikasi web ini memungkinkan pengguna mengunggah gambar wajah untuk mengklasifi
    ```
    http://localhost:5000
    ```
+
+## 🌐 Akses Online (Deploy)
+
+Aplikasi juga tersedia secara online melalui Railway:
+
+🔗 [klasifikasi-emosi-project-production.up.railway.app](https://klasifikasi-emosi-project-production.up.railway.app)
 
 ## 🌟 Fitur Utama
 
@@ -63,6 +73,7 @@ Aplikasi web ini memungkinkan pengguna mengunggah gambar wajah untuk mengklasifi
 * Model telah dilatih menggunakan dataset ekspresi wajah tertentu, sehingga akurasi dapat bervariasi tergantung pada kualitas gambar.
 * File `Final_project.ipynb` hanya digunakan untuk pelatihan model, bukan bagian dari runtime aplikasi.
 
-
 > 📂 *Proyek ini bertujuan untuk menggabungkan teknologi machine learning dan pemrosesan citra ke dalam aplikasi berbasis web yang interaktif dan edukatif.*
+
+---
 
