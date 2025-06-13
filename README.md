@@ -15,7 +15,7 @@ Aplikasi web ini memungkinkan pengguna mengunggah gambar wajah untuk mengklasifi
 ## 📁 Struktur File
 
 | File                  | Deskripsi                                                                                                                                                                                           |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------
 | `app.py`              | Backend utama dengan Flask. Memuat model terlatih (PCA, SVM, encoder label), menangani upload gambar, mendeteksi wajah dengan OpenCV, mengekstrak fitur (DWT), dan mengembalikan hasil klasifikasi. |
 | `Home.html`           | Halaman utama yang menjelaskan konsep klasifikasi ekspresi wajah, teknologi yang digunakan, serta aplikasinya. Didukung Tailwind CSS dan JavaScript.                                                |
 | `klasifikasi.html`    | Halaman upload gambar wajah, menampilkan preview gambar, info file, serta hasil klasifikasi emosi dengan confidence score.                                                                          |
